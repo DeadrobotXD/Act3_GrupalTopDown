@@ -27,6 +27,8 @@ public class InventoryItemUI : MonoBehaviour
     private void OnUse()
     {
         inventory.NotifyObjectUsed(inventoryInfo);
+        inventoryInfo.remainingUseCount --;
+
         Destroy(gameObject);
     }
 
@@ -37,6 +39,7 @@ public class InventoryItemUI : MonoBehaviour
 
     public void Initialize(Inventory inventory, InventoryInfo inventoryInfo)
     {
+        inventoryInfo = Instantiate(inventoryInfo);
         this.inventoryInfo = inventoryInfo;
         this.inventory = inventory;
         this.image.sprite = inventoryInfo.sprite;
