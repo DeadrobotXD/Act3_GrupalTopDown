@@ -51,7 +51,7 @@ public class Health : MonoBehaviour
             if (currentLife <= 0f)
             {
                 currentLife = 0f;
-                onLifeDepleted.Invoke(startLife);
+                onLifeDepleted.Invoke(startLife);//cuando llega a 0
             }
         }
     }
