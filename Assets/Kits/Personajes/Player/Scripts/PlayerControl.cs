@@ -6,7 +6,7 @@ public class PlayerControl : MonoBehaviour
 {
 
     [SerializeField] InputActionReference move;
-    [SerializeField] InputActionReference attack;
+    //[SerializeField] InputActionReference attack;
     CharacterController characterController;
 
     private void Awake()
@@ -21,7 +21,7 @@ public class PlayerControl : MonoBehaviour
         move.action.performed += OnMove;
         move.action.canceled += OnMove;
 
-        attack.action.Enable();
+        //attack.action.Enable();
     }
 
     private void OnDisable()
@@ -31,7 +31,7 @@ public class PlayerControl : MonoBehaviour
         move.action.performed -= OnMove;
         move.action.canceled -= OnMove;
 
-        attack.action.Disable();
+        //attack.action.Disable();
     }
 
     Vector2 rawMove = Vector2.zero;

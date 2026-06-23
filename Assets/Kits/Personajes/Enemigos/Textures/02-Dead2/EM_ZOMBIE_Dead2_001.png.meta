@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b868c4845e12c614e8a65678063b9450
+guid: 867730463ce03554182db447b3837aa6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 495059926779704592
-    second: EM_ZOMBIE_Walk_005_0
+      213: -3378768100351043935
+    second: EM_ZOMBIE_Dead2_001_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: EM_ZOMBIE_Walk_005_0
+      name: EM_ZOMBIE_Dead2_001_0
       rect:
         serializedVersion: 2
-        x: 28
-        y: 82
-        width: 297
-        height: 373
+        x: 23
+        y: 94
+        width: 221
+        height: 196
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0153c36616eced600800000000000000
-      internalID: 495059926779704592
+      spriteID: 1a6972070543c11d0800000000000000
+      internalID: -3378768100351043935
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      EM_ZOMBIE_Walk_005_0: 495059926779704592
+      EM_ZOMBIE_Dead2_001_0: -3378768100351043935
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

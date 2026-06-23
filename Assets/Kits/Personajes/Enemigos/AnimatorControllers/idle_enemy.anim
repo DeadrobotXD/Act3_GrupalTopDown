@@ -23,41 +23,44 @@ AnimationClip:
     - time: 0
       value: {fileID: -9027098777772948138, guid: a3cdf9ef418551c4ea6e44f75da10b95,
         type: 3}
-    - time: 0.1
+    - time: 0.16666667
+      value: {fileID: -9027098777772948138, guid: a3cdf9ef418551c4ea6e44f75da10b95,
+        type: 3}
+    - time: 0.35
       value: {fileID: -3801887677793719146, guid: 653351f2db4f02e449dbde4e9c5cf0ea,
         type: 3}
-    - time: 0.2
+    - time: 0.51666665
       value: {fileID: 6677545050855643792, guid: 30e6bbd190554d94b93347271fd2241e,
         type: 3}
-    - time: 0.3
+    - time: 0.68333334
       value: {fileID: 6929507746511443961, guid: e1368749d5ec3f8468262d34e8760da7,
         type: 3}
-    - time: 0.4
+    - time: 0.8666667
       value: {fileID: -7064061454587159676, guid: bdaba5960fe3a7d4792726bc7699ada5,
         type: 3}
-    - time: 0.5
+    - time: 1.0333333
       value: {fileID: -4766789836102497129, guid: f0765aea34ebcea489c079a8c28964cb,
         type: 3}
-    - time: 0.6
+    - time: 1.2
       value: {fileID: 8161626942352200652, guid: f4193ff337ece2b4293c5a58e1de462c,
         type: 3}
-    - time: 0.7
+    - time: 1.3833333
       value: {fileID: -4521929916711223887, guid: d0758f77ae160fd4287621ae70c005ea,
         type: 3}
-    - time: 0.8
+    - time: 1.55
       value: {fileID: -8355217436386523082, guid: 1aa9433a7d988284cb9cca793cabe2d4,
         type: 3}
-    - time: 0.9
+    - time: 1.7166667
       value: {fileID: -4919180716200693191, guid: 9a7e70a44119eb64dbc2c4b362ae7ad5,
         type: 3}
-    - time: 1
+    - time: 1.9
       value: {fileID: -2961624565890009891, guid: 87d01275aa1a3be4196de57b772fe8c2,
         type: 3}
-    - time: 1.1
+    - time: 2.0666666
       value: {fileID: 3468012971023967199, guid: 0fbb3370f77357d43879c6e0be68025e,
         type: 3}
     attribute: m_Sprite
-    path: 
+    path: Visuals/EnemyVisuals
     classID: 212
     script: {fileID: 0}
     flags: 2
@@ -69,7 +72,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 0
+      path: 2377263654
       attribute: 0
       script: {fileID: 0}
       typeID: 212
@@ -78,6 +81,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
+    - {fileID: -9027098777772948138, guid: a3cdf9ef418551c4ea6e44f75da10b95, type: 3}
     - {fileID: -9027098777772948138, guid: a3cdf9ef418551c4ea6e44f75da10b95, type: 3}
     - {fileID: -3801887677793719146, guid: 653351f2db4f02e449dbde4e9c5cf0ea, type: 3}
     - {fileID: 6677545050855643792, guid: 30e6bbd190554d94b93347271fd2241e, type: 3}
@@ -95,7 +99,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.1166667
+    m_StopTime: 2.0833333
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
