@@ -27,9 +27,12 @@ public class InventoryItemUI : MonoBehaviour
     private void OnUse()
     {
         inventory.NotifyObjectUsed(inventoryInfo);
-        inventoryInfo.remainingUseCount --;
+        inventoryInfo.remainingUseCount--;
 
-        Destroy(gameObject);
+        if (inventoryInfo.remainingUseCount <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnDiscard()

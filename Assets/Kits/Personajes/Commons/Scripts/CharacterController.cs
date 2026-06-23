@@ -23,8 +23,21 @@ public class CharacterController: MonoBehaviour, Ivisible
     public void SetRawMove(Vector2 rawMove)
     {
         this.rawMove = rawMove;
-        animator.SetFloat("HorizontalVelocity", rawMove.x);
-        animator.SetFloat("VerticalVelocity", rawMove.y);
+        //animator.SetFloat("HorizontalVelocity", rawMove.x);
+        //animator.SetFloat("VerticalVelocity", rawMove.y);
+        if (HasParameter("HorizontalVelocity"))
+            animator.SetFloat("HorizontalVelocity", rawMove.x);
+        if (HasParameter("VerticalVelocity"))
+            animator.SetFloat("VerticalVelocity", rawMove.y);
+    }
+    private bool HasParameter(string paramName)
+    {
+        if (animator == null) return false;
+        foreach (AnimatorControllerParameter param in animator.parameters)
+        {
+            if (param.name == paramName) return true;
+        }
+        return false;
     }
 
     Ivisible.Side Ivisible.GetSide()

@@ -14,6 +14,8 @@ namespace Cainos.PixelArtTopDown_Basic
         private Color curColor;
         private Color targetColor;
 
+        private int overlapCount = 0;
+
         private void Awake()
         {
             targetColor = runes[0].color;
@@ -21,12 +23,18 @@ namespace Cainos.PixelArtTopDown_Basic
 
         private void OnTriggerEnter2D(Collider2D other)
         {
+            overlapCount++;
             targetColor.a = 1.0f;
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            targetColor.a = 0.0f;
+            overlapCount = Mathf.Max(0, overlapCount - 1);
+
+            if (overlapCount == 0)
+            {
+                targetColor.a = 0.0f;
+            }
         }
 
         private void Update()
