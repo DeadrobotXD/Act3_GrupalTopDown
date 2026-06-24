@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class HitCollider : MonoBehaviour
 {
+
+    [SerializeField] AudioClip attack;
     // Se dispara cuando ALGO entra en el trigger (caso normal: el zombi
     // caminando hacia el player, o un proyectil moviéndose).
     private void OnTriggerEnter2D(Collider2D collision)
@@ -18,5 +20,7 @@ public class HitCollider : MonoBehaviour
         if (hurtCollider == null) return;
 
         hurtCollider.NotifyHit(this);
+        AudioSource.PlayClipAtPoint(attack, transform.position);
+
     }
 }

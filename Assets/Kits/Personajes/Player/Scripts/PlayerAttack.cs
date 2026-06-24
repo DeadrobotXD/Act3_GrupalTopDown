@@ -5,6 +5,7 @@ public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] InputActionReference attack;
     [SerializeField] GameObject attackHitbox;   // hijo con HitCollider, desactivado por defecto
+    [SerializeField] AudioClip attackSound;
 
     [Header("Tiempos")]
     [Tooltip("Cuánto tiempo permanece activa la hitbox por golpe (segundos).")]
@@ -49,6 +50,7 @@ public class PlayerAttack : MonoBehaviour
 
         cooldownTimer = attackCooldown;
         StartCoroutine(DoAttack());
+        AudioSource.PlayClipAtPoint(attackSound, transform.position);
     }
 
     private System.Collections.IEnumerator DoAttack()

@@ -10,6 +10,8 @@ public class PlayerDeath : MonoBehaviour
     [Tooltip("Si está activo, congela el juego (Time.timeScale = 0) al morir.")]
     [SerializeField] bool pauseOnDeath = true;
 
+    [SerializeField] AudioClip gameOverSound;
+
     Health health;
 
     private void Awake()
@@ -35,6 +37,7 @@ public class PlayerDeath : MonoBehaviour
 
     private void OnPlayerDied(float startLife)
     {
+        AudioSource.PlayClipAtPoint(gameOverSound, transform.position);
         if (gameOverPanel != null) gameOverPanel.SetActive(true);
 
         // Congelamos el juego para que los zombis dejen de moverse
