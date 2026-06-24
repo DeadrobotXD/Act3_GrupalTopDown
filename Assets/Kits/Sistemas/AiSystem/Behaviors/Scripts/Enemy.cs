@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
@@ -13,12 +13,11 @@ public class Enemy : MonoBehaviour
         Dead,
     };
 
-    [Header("Combate")]
-    [SerializeField] float attackRange = 1f;          // distancia para pasar de Seeking a Attacking
-    [SerializeField] float hitStaggerDuration = 0.4f; // cuánto se detiene al recibir un golpe
+    [SerializeField] Transform target;
 
-    [Header("Muerte")]
-    [Tooltip("Segundos que dura la animación de muerte antes de destruir el zombi.")]
+    [SerializeField] float attackRange = 1f;          // distancia para pasar de Seeking a Attacking
+    [SerializeField] float hitStaggerDuration = 0.4f; // cuanto se detiene al recibir un golpe
+
     [SerializeField] float deathDuration = 1.2f;
 
     State currentState = State.Guarding;
@@ -51,12 +50,35 @@ public class Enemy : MonoBehaviour
         if (health != null) health.onLifeDepleted.RemoveListener(OnLifeDepleted);
     }
 
+    /// <summary>
+    /// Asigna el objetivo al que este enemigo debe perseguir.
+    /// Llamado por EnemyGenerator al instanciar el prefab.
+    /// </summary>
+    public void SetTarget(Transform newTarget)
+    {
+        target = newTarget;
+    }
+
+    /// <summary>
+    /// Devuelve el Transform del objetivo actual, priorizando los visibles
+    /// detectados por Sight y cayendo en el target asignado si no hay ninguno.
+    /// </summary>
+    private Transform GetCurrentTarget()
+    {
+        if (sight != null && sight.visiblesInSight.Count > 0)
+        {
+            return sight.visiblesInSight[0].GetTransform();
+        }
+        return target;
+    }
+
     private void Update()
     {
         switch (currentState)
         {
             case State.Guarding:
-                if (sight.visiblesInSight.Count > 0)
+                // Si hay un visible en rango de Sight o tenemos un target asignado, perseguir
+                if (sight.visiblesInSight.Count > 0 || target != null)
                 {
                     currentState = State.Seeking;
                 }
@@ -70,14 +92,15 @@ public class Enemy : MonoBehaviour
                 break;
 
             case State.Seeking:
-                if (sight.visiblesInSight.Count <= 0)
+                Transform seekTarget = GetCurrentTarget();
+                if (seekTarget == null)
                 {
+                    // Sin visibles y sin target asignado: volver a guardia
                     currentState = State.Guarding;
                 }
                 else
                 {
-                    Transform target = sight.visiblesInSight[0].GetTransform();
-                    float distance = Vector2.Distance(transform.position, target.position);
+                    float distance = Vector2.Distance(transform.position, seekTarget.position);
 
                     if (distance <= attackRange)
                     {
@@ -85,20 +108,20 @@ public class Enemy : MonoBehaviour
                     }
                     else
                     {
-                        characterController.SetRawMove((target.position - transform.position).normalized);
+                        characterController.SetRawMove((seekTarget.position - transform.position).normalized);
                     }
                 }
                 break;
 
             case State.Attacking:
-                if (sight.visiblesInSight.Count <= 0)
+                Transform atkTarget = GetCurrentTarget();
+                if (atkTarget == null)
                 {
                     currentState = State.Guarding;
                     break;
                 }
 
-                Transform attackTarget = sight.visiblesInSight[0].GetTransform();
-                float distToTarget = Vector2.Distance(transform.position, attackTarget.position);
+                float distToTarget = Vector2.Distance(transform.position, atkTarget.position);
 
                 characterController.SetRawMove(Vector2.zero);
 
@@ -137,17 +160,17 @@ public class Enemy : MonoBehaviour
 
         currentState = State.Dead;
 
-        // Dispara la animación de muerte (Trigger "Die" en el Animator).
+        // Dispara la animacion de muerte (Trigger "Die" en el Animator).
         if (animator != null) animator.SetTrigger("Die");
 
-        // Desactivamos los colliders para que el cadáver no siga golpeando
-        // al player ni recibiendo más hits mientras se reproduce la animación.
+        // Desactivamos los colliders para que el cadaver no siga golpeando
+        // al player ni recibiendo mas hits mientras se reproduce la animacion.
         foreach (Collider2D col in GetComponentsInChildren<Collider2D>())
         {
             col.enabled = false;
         }
 
-        // Destruye el zombi cuando termina la animación.
+        // Destruye el zombi cuando termina la animacion.
         Destroy(gameObject, deathDuration);
     }
 }
